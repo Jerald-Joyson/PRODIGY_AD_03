@@ -1,6 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import '../widget/button_widget.dart';
+import '../widget/time_card.dart';
 
 class CountdownPage extends StatefulWidget {
   const CountdownPage({super.key});
@@ -103,7 +104,7 @@ class _CountdownPageState extends State<CountdownPage> {
                   onClicked: () {
                     if (isRunning) {
                       stopTimer(resets: false);
-                    }else{
+                    } else {
                       startTimer(resets: false);
                     }
                   }),
@@ -138,51 +139,4 @@ class _CountdownPageState extends State<CountdownPage> {
       ],
     );
   }
-
-  ButtonWidget({
-    required String text,
-    Color color = Colors.white,
-    Color backgroundColor = Colors.black,
-    required Function() onClicked,
-  }) =>
-      ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          foregroundColor: color,
-          backgroundColor: backgroundColor,
-        ),
-        onPressed: onClicked,
-        child: Text(text),
-      );
 }
-
-buildTimeCard({required String time, required String header}) => Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          padding: const EdgeInsets.all(8),
-          child: Text(
-            time,
-            style: const TextStyle(
-              fontSize: 72,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        Text(
-          header,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ),
-        ),
-      ],
-    );
