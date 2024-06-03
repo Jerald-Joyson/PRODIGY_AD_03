@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widget/button_widget.dart';
+import '../widget/set_duration_dialog.dart';
 import '../widget/time_card.dart';
 
 class CountdownPage extends StatefulWidget {
@@ -11,7 +13,8 @@ class CountdownPage extends StatefulWidget {
 }
 
 class _CountdownPageState extends State<CountdownPage> {
-  static const countDownDuration = Duration(minutes: 10);
+  static const maxCountDownDuration = Duration(hours: 24);
+  Duration countDownDuration = const Duration(minutes: 10);
   Duration duration = const Duration();
   Timer? timer;
 
@@ -54,6 +57,13 @@ class _CountdownPageState extends State<CountdownPage> {
     });
   }
 
+  void setCountDownDuration(Duration newDuration) {
+    setState(() {
+      countDownDuration = newDuration;
+      reset();
+    });
+  }
+
   void startTimer({bool resets = true}) {
     if (resets) {
       reset();
@@ -83,10 +93,34 @@ class _CountdownPageState extends State<CountdownPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            buildTime(),
+            Text(
+              isCountDown ? 'COUNTDOWN' : 'TIMER',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
             const SizedBox(height: 80),
+            buildTime(),
+            const SizedBox(height: 20),
+            isCountDown
+                ? ButtonWidget(
+                    text: 'Set Countdown Duration',
+                    onClicked: () => showDialog(
+                      context: context,
+                      builder: (context) => SetDurationDialog(
+                        initialDuration: countDownDuration,
+                        onDurationSet: setCountDownDuration,
+                      ),
+                    ),
+                  )
+                : Container(),
+            const SizedBox(height: 40),
             buildButtons(),
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: toggleCountDown,
+        child: Icon(
+          isCountDown ? CupertinoIcons.stopwatch : Icons.timer_outlined,
         ),
       ),
     );
