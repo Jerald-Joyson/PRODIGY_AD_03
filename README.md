@@ -1,4 +1,4 @@
-# myapp
+# My StopWatch App
 
 A new Flutter project.
 
