@@ -5,7 +5,7 @@ Widget buildTimeCard({required String time, required String header}) => Column(
       children: [
         Container(
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Colors.grey,
             borderRadius: BorderRadius.circular(20),
           ),
           padding: const EdgeInsets.all(8),
@@ -14,7 +14,7 @@ Widget buildTimeCard({required String time, required String header}) => Column(
             style: const TextStyle(
               fontSize: 72,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
         ),

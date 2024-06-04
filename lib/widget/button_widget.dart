@@ -9,18 +9,23 @@ class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
     super.key,
     required this.text,
-    this.color = Colors.white,
-    this.backgroundColor = Colors.black,
+    this.color = Colors.black,
+    this.backgroundColor = Colors.white,
     required this.onClicked,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        foregroundColor: color,
-        backgroundColor: backgroundColor,
-      ),
+    return OutlinedButton(
+      style: OutlinedButton.styleFrom(
+          foregroundColor: color,
+          backgroundColor: backgroundColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            side: BorderSide(
+              color: Colors.grey.shade400,
+            ),
+          )),
       onPressed: onClicked,
       child: Text(text),
     );

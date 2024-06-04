@@ -93,10 +93,12 @@ class _CountdownPageState extends State<CountdownPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              isCountDown ? 'COUNTDOWN' : 'TIMER',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            Text(isCountDown ? 'COUNTDOWN' : 'TIMER',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black.withOpacity(0.8),
+                )),
             const SizedBox(height: 80),
             buildTime(),
             const SizedBox(height: 20),
@@ -135,6 +137,8 @@ class _CountdownPageState extends State<CountdownPage> {
             children: [
               ButtonWidget(
                   text: isRunning ? 'STOP' : 'RESUME',
+                  color: Colors.black,
+                  backgroundColor: Colors.grey,
                   onClicked: () {
                     if (isRunning) {
                       stopTimer(resets: false);
