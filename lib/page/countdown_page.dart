@@ -13,7 +13,7 @@ class CountdownPage extends StatefulWidget {
 }
 
 class _CountdownPageState extends State<CountdownPage> {
-  static const maxCountDownDuration = Duration(hours: 24);
+  // static const maxCountDownDuration = Duration(hours: 24);
   Duration countDownDuration = const Duration(minutes: 10);
   Duration duration = const Duration();
   Timer? timer;
